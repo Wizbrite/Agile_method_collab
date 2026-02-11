@@ -23,7 +23,7 @@ function App() {
 
     return (
         <BrowserRouter>
-            <div style={{ minHeight: '100vh', backgroundColor: '#f9fafb' }}>
+            <div style={{ minHeight: '100vh' }}>
                 {/* TODO: Add navigation header (optional enhancement) */}
                 <Routes>
                     {/* Public routes */}

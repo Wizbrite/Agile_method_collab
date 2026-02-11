@@ -202,6 +202,27 @@ This project supports team-based development:
 - Follow the file mapping in TEAM_IMPLEMENTATION_GUIDE.md
 - Use provided AI prompts to ensure consistency
 
+## 🎨 Design System & Theme
+
+> [!IMPORTANT]
+> **Theme: Elegant Split (Rich Violet Deep Glow & Off-White)**
+>
+> A premium theme with a multi-layered rich violet deep radial glow background and sophisticated split-screen "Off-White" cards.
+>
+> - **Background:** Rich Violet Deep Glow (`#6d28d9` center to `#2e1065` edges)
+> - **Cards:** Off-White (`#fdfaff`) with high-contrast absolute black text.
+> - **Layout:** Split-screen (`.split-left` for forms, `.split-right` for gradients).
+> - **Primary Gradient:** `linear-gradient(135deg, #6d28d9, #a21caf)`
+> - **Corners:** Highly rounded (`var(--radius)` = 30px)
+>
+> Do not use hardcoded colors. Always reference the variables in `index.css`.
+
+### 🤖 AI Theme Prompt (FOR DEVELOPERS)
+
+When asking AI to build a new component or style a page, **copy and paste this rule** into your prompt:
+
+> "Follow the app's 'Elegant Split' theme. Use `frontend/src/index.css` global variables: a multi-layered rich violet radial glow background centered behind the card, and split-screen off-white cards. Ensure all text inside cards uses `#000000` (absolute black) for perfect readability."
+
 ## 📝 License
 
 MIT

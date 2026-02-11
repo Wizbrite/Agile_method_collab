@@ -15,56 +15,48 @@ function TaskFilter({ filters, onFilterChange }) {
     return (
         <div style={{
             display: 'flex',
-            gap: '1rem',
-            marginBottom: '2rem',
-            padding: '1rem',
-            backgroundColor: '#f3f4f6',
-            borderRadius: '8px'
+            gap: '1.5rem',
+            marginBottom: '2.5rem',
+            padding: '1.5rem',
+            backgroundColor: 'var(--bg-card)',
+            borderRadius: 'var(--radius)',
+            border: '1px solid var(--border)',
+            flexWrap: 'wrap'
         }}>
-            <div>
-                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.875rem' }}>
-                    Status:
-                    <select
-                        value={filters.status || ''}
-                        onChange={(e) => handleChange('status', e.target.value)}
-                        style={{ display: 'block', padding: '0.5rem' }}
-                    >
-                        <option value="">All</option>
-                        <option value="todo">To Do</option>
-                        <option value="in_progress">In Progress</option>
-                        <option value="completed">Completed</option>
-                    </select>
-                </label>
+            <div style={{ flex: '1', minWidth: '150px' }}>
+                <label>Status:</label>
+                <select
+                    value={filters.status || ''}
+                    onChange={(e) => handleChange('status', e.target.value)}
+                >
+                    <option value="">All Statuses</option>
+                    <option value="todo">To Do</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
             </div>
 
-            <div>
-                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.875rem' }}>
-                    Priority:
-                    <select
-                        value={filters.priority || ''}
-                        onChange={(e) => handleChange('priority', e.target.value)}
-                        style={{ display: 'block', padding: '0.5rem' }}
-                    >
-                        <option value="">All</option>
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
-                </label>
+            <div style={{ flex: '1', minWidth: '150px' }}>
+                <label>Priority:</label>
+                <select
+                    value={filters.priority || ''}
+                    onChange={(e) => handleChange('priority', e.target.value)}
+                >
+                    <option value="">All Priorities</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
             </div>
 
-            {/* TODO: Add category filter (SB06) */}
-            <div>
-                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.875rem' }}>
-                    Search:
-                    <input
-                        type="text"
-                        value={filters.search || ''}
-                        onChange={(e) => handleChange('search', e.target.value)}
-                        placeholder="Search tasks..."
-                        style={{ display: 'block', padding: '0.5rem' }}
-                    />
-                </label>
+            <div style={{ flex: '2', minWidth: '250px' }}>
+                <label>Search Tasks:</label>
+                <input
+                    type="text"
+                    value={filters.search || ''}
+                    onChange={(e) => handleChange('search', e.target.value)}
+                    placeholder="Search by title or description..."
+                />
             </div>
         </div>
     );

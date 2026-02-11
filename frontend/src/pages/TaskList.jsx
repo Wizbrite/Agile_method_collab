@@ -46,10 +46,10 @@ function TaskList() {
     };
 
     return (
-        <div style={{ padding: '2rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem' }}>
+        <div className="container">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
                 <h1>My Tasks</h1>
-                <button onClick={() => navigate('/tasks/new')}>
+                <button onClick={() => navigate('/tasks/new')} style={{ padding: '0.5rem 1.5rem' }}>
                     + New Task
                 </button>
             </div>

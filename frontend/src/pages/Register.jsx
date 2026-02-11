@@ -53,85 +53,87 @@ function Register() {
     };
 
     return (
-        <div style={{ padding: '2rem', maxWidth: '400px', margin: '0 auto' }}>
-            <h1>Register</h1>
+        <div className="container" style={{ maxWidth: '900px' }}>
+            <div className="card">
+                <div className="split-left">
+                    <h1 style={{ color: 'var(--primary)', marginBottom: '2rem' }}>REGISTER</h1>
 
-            {error && (
-                <div style={{ color: 'red', marginBottom: '1rem' }}>
-                    {error}
+                    {error && (
+                        <div className="error-message" style={{ marginBottom: '1.5rem' }}>
+                            {error}
+                        </div>
+                    )}
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label>Username</label>
+                            <input
+                                type="text"
+                                name="username"
+                                value={formData.username}
+                                onChange={handleChange}
+                                placeholder="Choose a username"
+                                required
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Email Address</label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                placeholder="Enter your email"
+                                required
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                placeholder="Create a password"
+                                required
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Confirm Password</label>
+                            <input
+                                type="password"
+                                name="confirmPassword"
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
+                                placeholder="Confirm your password"
+                                required
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            style={{ width: '100%', marginTop: '1rem' }}
+                        >
+                            {loading ? 'Creating Account...' : 'Register'}
+                        </button>
+
+                        <p style={{ marginTop: '2rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                            Already have an account?{' '}
+                            <a href="/login" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>Login here</a>
+                        </p>
+                    </form>
                 </div>
-            )}
 
-            <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>
-                        Username:
-                        <input
-                            type="text"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleChange}
-                            required
-                            style={{ display: 'block', width: '100%', padding: '0.5rem' }}
-                        />
-                    </label>
+                <div className="split-right">
+                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'white' }}>Join</h2>
+                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'white' }}>Our Team</h2>
+                    <p style={{ opacity: 0.9 }}>Create an account to start managing your projects with agility and style.</p>
                 </div>
-
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>
-                        Email:
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            style={{ display: 'block', width: '100%', padding: '0.5rem' }}
-                        />
-                    </label>
-                </div>
-
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>
-                        Password:
-                        <input
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                            style={{ display: 'block', width: '100%', padding: '0.5rem' }}
-                        />
-                    </label>
-                </div>
-
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>
-                        Confirm Password:
-                        <input
-                            type="password"
-                            name="confirmPassword"
-                            value={formData.confirmPassword}
-                            onChange={handleChange}
-                            required
-                            style={{ display: 'block', width: '100%', padding: '0.5rem' }}
-                        />
-                    </label>
-                </div>
-
-                <button
-                    type="submit"
-                    disabled={loading}
-                    style={{ padding: '0.5rem 1rem' }}
-                >
-                    {loading ? 'Registering...' : 'Register'}
-                </button>
-
-                <p style={{ marginTop: '1rem' }}>
-                    Already have an account?{' '}
-                    <a href="/login">Login here</a>
-                </p>
-            </form>
+            </div>
         </div>
     );
 }

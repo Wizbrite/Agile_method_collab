@@ -31,55 +31,61 @@ function Login() {
     };
 
     return (
-        <div style={{ padding: '2rem', maxWidth: '400px', margin: '0 auto' }}>
-            <h1>Login</h1>
+        <div className="container" style={{ maxWidth: '900px' }}>
+            <div className="card">
+                <div className="split-left">
+                    <h1 style={{ color: 'var(--primary)', marginBottom: '2rem' }}>LOGIN</h1>
 
-            {error && (
-                <div style={{ color: 'red', marginBottom: '1rem' }}>
-                    {error}
+                    {error && (
+                        <div className="error-message" style={{ marginBottom: '1.5rem' }}>
+                            {error}
+                        </div>
+                    )}
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label>Email Address</label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Enter your email"
+                                required
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Enter your password"
+                                required
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            style={{ width: '100%', marginTop: '1rem' }}
+                        >
+                            {loading ? 'Signing in...' : 'Sign In'}
+                        </button>
+
+                        <p style={{ marginTop: '2rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                            Don't have an account?{' '}
+                            <a href="/register" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>Sign Up</a>
+                        </p>
+                    </form>
                 </div>
-            )}
 
-            <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>
-                        Email:
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            style={{ display: 'block', width: '100%', padding: '0.5rem' }}
-                        />
-                    </label>
+                <div className="split-right">
+                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'white' }}>Hey</h2>
+                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'white' }}>Welcome Back</h2>
+                    <p style={{ opacity: 0.9 }}>Login to stay connected and keep track of your tasks effectively.</p>
                 </div>
-
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>
-                        Password:
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            style={{ display: 'block', width: '100%', padding: '0.5rem' }}
-                        />
-                    </label>
-                </div>
-
-                <button
-                    type="submit"
-                    disabled={loading}
-                    style={{ padding: '0.5rem 1rem' }}
-                >
-                    {loading ? 'Logging in...' : 'Login'}
-                </button>
-
-                <p style={{ marginTop: '1rem' }}>
-                    Don't have an account?{' '}
-                    <a href="/register">Register here</a>
-                </p>
-            </form>
+            </div>
         </div>
     );
 }

@@ -522,6 +522,13 @@ Expected: Status 200, returns array of tasks
    - NEVER push the `node_modules` directory.
    - It is already in `.gitignore`, keep it that way.
 
+7. **The Theme is Law**
+   - Theme Name: **Elegant Violet**
+   - Do not change the global colors in `index.css`.
+   - Use `var(--primary-gradient)` for all main buttons.
+   - Use `var(--radius)` for rounded elements (30px).
+   - **MANDATORY:** Always include this line in your AI prompts: *"Follow the Elegant Violet theme using gradients and variables from index.css. Use the .card and .container classes."*
+
 ### ✅ DO:
 
 1. **Fill TODOs only**

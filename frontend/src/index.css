@@ -1,0 +1,208 @@
+:root {
+  /* Elegant Violet Palette - Inspired by Divi */
+  --primary: #6d28d9;
+  --primary-hover: #5b21b6;
+  --primary-gradient: linear-gradient(135deg, #6d28d9 0%, #a21caf 100%);
+  --secondary: #ec4899;
+  --accent: #f472b6;
+
+  /* Neutral Palette - Elegant Split (Off-white cards) */
+  --bg-main: #0f172a;
+  --bg-sidebar: #1e1b4b;
+  --bg-card: #fdfaff;
+  /* "Not too white" off-white */
+  --bg-input: #ffffff;
+  --text-main: #f8fafc;
+  /* On body */
+  --text-dark: #000000;
+  /* Absolute black for maximum visibility */
+  /* For use inside cards */
+  --text-muted: #64748b;
+  --text-on-primary: #ffffff;
+  --border: #e2e8f0;
+  --error: #ef4444;
+  --success: #10b981;
+  --warning: #f59e0b;
+
+  /* Spacing & Radii */
+  --radius: 30px;
+  --radius-sm: 12px;
+  --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: radial-gradient(circle at 50% 50%, #6d28d9 0%, #581c87 40%, #2e1065 100%);
+  background-attachment: fixed;
+  color: var(--text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text-dark);
+  margin-bottom: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.split-left h1 {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  letter-spacing: 0.05em;
+}
+
+button {
+  background: var(--primary-gradient);
+  color: var(--text-on-primary);
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px 0 rgba(109, 40, 217, 0.39);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(109, 40, 217, 0.23);
+  filter: brightness(1.1);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background: var(--text-muted);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.9rem 1.25rem;
+  background-color: var(--bg-input);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: #000000;
+  outline: none;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  color: var(--text-dark);
+  overflow: hidden;
+  /* For split background */
+  display: flex;
+  min-height: 500px;
+  padding: 0;
+  /* Let children handle padding */
+}
+
+.split-left {
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.split-right {
+  flex: 1;
+  background: var(--primary-gradient);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.split-right::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.error-message {
+  color: var(--error);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Gradient Background Utility */
+.hero-gradient {
+  background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 50%, #db2777 100%);
+  color: white;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6d28d9;
+  border-radius: 10px;
+}
