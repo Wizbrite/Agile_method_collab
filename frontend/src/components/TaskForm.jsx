@@ -30,100 +30,85 @@ function TaskForm({ initialData = {}, onSubmit, onCancel, loading = false }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: '1rem' }}>
-                <label>
-                    Title:
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleChange}
-                        required
-                        style={{ display: 'block', width: '100%', padding: '0.5rem' }}
-                    />
-                </label>
+        <form onSubmit={handleSubmit} className='bg-red'>
+            <div className="mb-4">
+                <label>Title:</label>
+                <input
+                    type="text"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    required
+                />
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-                <label>
-                    Description:
-                    <textarea
-                        name="description"
-                        value={formData.description}
-                        onChange={handleChange}
-                        rows="4"
-                        style={{ display: 'block', width: '100%', padding: '0.5rem' }}
-                    />
-                </label>
+            <div className="mb-4">
+                <label>Description:</label>
+                <textarea
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    rows="4"
+                />
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-                <label>
-                    Status:
-                    <select
-                        name="status"
-                        value={formData.status}
-                        onChange={handleChange}
-                        style={{ display: 'block', width: '100%', padding: '0.5rem' }}
-                    >
-                        <option value="todo">To Do</option>
-                        <option value="in_progress">In Progress</option>
-                        <option value="completed">Completed</option>
-                    </select>
-                </label>
+            <div className="mb-4">
+                <label>Status:</label>
+                <select
+                    name="status"
+                    value={formData.status}
+                    onChange={handleChange}
+                >
+                    <option value="todo">To Do</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-                <label>
-                    Priority:
-                    <select
-                        name="priority"
-                        value={formData.priority}
-                        onChange={handleChange}
-                        style={{ display: 'block', width: '100%', padding: '0.5rem' }}
-                    >
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
-                </label>
+            <div className="mb-4">
+                <label>Priority:</label>
+                <select
+                    name="priority"
+                    value={formData.priority}
+                    onChange={handleChange}
+                >
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
             </div>
 
             {/* TODO: Implement deadline picker (SB07) */}
-            <div style={{ marginBottom: '1rem' }}>
-                <label>
-                    Deadline:
-                    <input
-                        type="datetime-local"
-                        name="deadline"
-                        value={formData.deadline}
-                        onChange={handleChange}
-                        style={{ display: 'block', width: '100%', padding: '0.5rem' }}
-                    />
-                </label>
+            <div className="mb-4">
+                <label>Deadline:</label>
+                <input
+                    type="datetime-local"
+                    name="deadline"
+                    value={formData.deadline}
+                    onChange={handleChange}
+                />
             </div>
 
             {/* TODO: Implement category selector (SB06) */}
-            <div style={{ marginBottom: '1rem' }}>
+            <div className="mb-4">
                 <CategorySelector
                     value={formData.categoryId}
                     onChange={(categoryId) => setFormData({ ...formData, categoryId })}
                 />
             </div>
 
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div className="flex gap-4">
                 <button
                     type="submit"
                     disabled={loading}
-                    style={{ padding: '0.5rem 1rem' }}
+                    className="px-4 py-2"
                 >
                     {loading ? 'Saving...' : 'Save Task'}
                 </button>
                 <button
                     type="button"
                     onClick={onCancel}
-                    style={{ padding: '0.5rem 1rem' }}
+                    className="px-4 py-2 bg-transparent  border-border hover:bg-slate-100"
                 >
                     Cancel
                 </button>

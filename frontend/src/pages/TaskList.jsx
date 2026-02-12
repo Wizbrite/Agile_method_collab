@@ -46,10 +46,10 @@ function TaskList() {
     };
 
     return (
-        <div className="container">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
+        <div className="container-custom">
+            <div className="flex justify-between items-center mb-10">
                 <h1>My Tasks</h1>
-                <button onClick={() => navigate('/tasks/new')} style={{ padding: '0.5rem 1.5rem' }}>
+                <button onClick={() => navigate('/tasks/new')} className="px-6 py-2">
                     + New Task
                 </button>
             </div>
@@ -57,7 +57,7 @@ function TaskList() {
             <TaskFilter filters={filters} onFilterChange={setFilters} />
 
             {error && (
-                <div style={{ color: 'red', marginBottom: '1rem' }}>
+                <div className="error-message mb-4">
                     {error}
                 </div>
             )}
@@ -67,7 +67,7 @@ function TaskList() {
             ) : tasks.length === 0 ? (
                 <p>No tasks found. Create your first task!</p>
             ) : (
-                <div style={{ display: 'grid', gap: '1rem' }}>
+                <div className="grid gap-4">
                     {tasks.map((task) => (
                         <TaskCard
                             key={task.id}

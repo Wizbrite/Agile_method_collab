@@ -23,7 +23,7 @@ function App() {
 
     return (
         <BrowserRouter>
-            <div style={{ minHeight: '100vh' }}>
+            <div className="min-h-screen">
                 {/* TODO: Add navigation header (optional enhancement) */}
                 <Routes>
                     {/* Public routes */}

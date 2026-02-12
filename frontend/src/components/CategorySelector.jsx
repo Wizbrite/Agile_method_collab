@@ -36,7 +36,6 @@ function CategorySelector({ value, onChange }) {
             <select
                 value={value || ''}
                 onChange={(e) => onChange(e.target.value)}
-                style={{ display: 'block', width: '100%', padding: '0.5rem' }}
             >
                 <option value="">No Category</option>
                 {categories.map((category) => (

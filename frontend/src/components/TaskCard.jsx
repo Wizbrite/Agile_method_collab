@@ -7,103 +7,68 @@ function TaskCard({ task, onDelete, onEdit }) {
     // TODO: Implement overdue visual indicator (SB09)
     const isOverdue = task.isOverdue || (task.deadline && new Date(task.deadline) < new Date());
 
-    const priorityColors = {
-        low: 'var(--success)',
-        medium: 'var(--warning)',
-        high: 'var(--error)'
+    const priorityClasses = {
+        low: 'bg-success',
+        medium: 'bg-warning',
+        high: 'bg-error'
     };
 
     return (
-        <div className="card" style={{
-            borderColor: isOverdue ? 'var(--error)' : 'var(--border)',
-            position: 'relative',
-            overflow: 'hidden'
-        }}>
+        <div className={`card relative overflow-hidden ${isOverdue ? 'border-error' : 'border-border'}`}>
             {isOverdue && (
-                <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '4px',
-                    height: '100%',
-                    backgroundColor: 'var(--error)'
-                }} />
+                <div className="absolute top-0 left-0 w-1 h-full bg-error" />
             )}
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+            <div className="flex justify-between items-start">
                 <div>
-                    <h3 style={{ marginBottom: '0.5rem' }}>{task.title}</h3>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '1rem' }}>
+                    <h3 className="mb-2">{task.title}</h3>
+                    <p className="text-text-muted text-[0.95rem] mb-4">
                         {task.description}
                     </p>
 
-                    <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                        <span style={{
-                            padding: '0.35rem 0.75rem',
-                            borderRadius: '20px',
-                            backgroundColor: 'var(--bg-input)',
-                            fontSize: '0.75rem',
-                            fontWeight: '600',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.05em'
-                        }}>
+                    <div className="flex gap-3 flex-wrap">
+                        <span className="px-3 py-1.5 rounded-full bg-bg-input text-[10px] font-bold uppercase tracking-wider">
                             {task.status.replace('_', ' ')}
                         </span>
 
-                        <span style={{
-                            padding: '0.35rem 0.75rem',
-                            borderRadius: '20px',
-                            backgroundColor: priorityColors[task.priority],
-                            color: 'white',
-                            fontSize: '0.75rem',
-                            fontWeight: '600',
-                            textTransform: 'uppercase'
-                        }}>
+                        <span className={`px-3 py-1.5 rounded-full ${priorityClasses[task.priority]} text-white text-[10px] font-bold uppercase`}>
                             {task.priority}
                         </span>
 
                         {task.category && (
-                            <span style={{
-                                padding: '0.35rem 0.75rem',
-                                borderRadius: '20px',
-                                backgroundColor: task.category.color + '33',
-                                color: task.category.color,
-                                border: `1px solid ${task.category.color}`,
-                                fontSize: '0.75rem',
-                                fontWeight: '600'
-                            }}>
+                            <span
+                                className="px-3 py-1.5 rounded-full text-[10px] font-bold"
+                                style={{
+                                    backgroundColor: task.category.color + '33',
+                                    color: task.category.color,
+                                    border: `1px solid ${task.category.color}`
+                                }}
+                            >
                                 {task.category.name}
                             </span>
                         )}
                     </div>
 
                     {task.deadline && (
-                        <p style={{
-                            marginTop: '1rem',
-                            fontSize: '0.875rem',
-                            color: isOverdue ? 'var(--error)' : 'var(--text-muted)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.5rem'
-                        }}>
+                        <p className={`mt-4 text-xs ${isOverdue ? 'text-error' : 'text-text-muted'} flex items-center gap-2`}>
                             <span>{isOverdue ? '🚨 Overdue' : '⏰ Deadline'}:</span>
-                            <span style={{ fontWeight: '600' }}>
+                            <span className="font-bold">
                                 {new Date(task.deadline).toLocaleDateString()}
                             </span>
                         </p>
                     )}
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <div className="flex gap-3">
                     <button
                         onClick={() => onEdit(task.id)}
-                        style={{ padding: '0.4rem 0.8rem', fontSize: '0.875rem', backgroundColor: 'var(--bg-input)', color: 'var(--text-main)' }}
+                        className="px-3 py-1.5 text-xs bg-bg-input text-text-dark shadow-none hover:bg-slate-100"
                     >
                         Edit
                     </button>
                     <button
                         onClick={() => onDelete(task.id)}
-                        style={{ padding: '0.4rem 0.8rem', fontSize: '0.875rem', backgroundColor: 'transparent', color: 'var(--error)', border: '1px solid var(--error)', boxShadow: 'none' }}
+                        className="px-3 py-1.5 text-xs bg-transparent text-error border border-error shadow-none hover:bg-error/10"
                     >
                         Delete
                     </button>

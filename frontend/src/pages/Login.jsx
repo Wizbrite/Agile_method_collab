@@ -31,13 +31,13 @@ function Login() {
     };
 
     return (
-        <div className="container" style={{ maxWidth: '900px' }}>
+        <div className="container-custom max-w-[900px]">
             <div className="card">
                 <div className="split-left">
-                    <h1 style={{ color: 'var(--primary)', marginBottom: '2rem' }}>LOGIN</h1>
+                    <h1 className="text-primary mb-8">LOGIN</h1>
 
                     {error && (
-                        <div className="error-message" style={{ marginBottom: '1.5rem' }}>
+                        <div className="error-message mb-6">
                             {error}
                         </div>
                     )}
@@ -68,22 +68,22 @@ function Login() {
                         <button
                             type="submit"
                             disabled={loading}
-                            style={{ width: '100%', marginTop: '1rem' }}
+                            className="w-full mt-4"
                         >
                             {loading ? 'Signing in...' : 'Sign In'}
                         </button>
 
-                        <p style={{ marginTop: '2rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                        <p className="mt-8 text-center text-text-muted text-sm">
                             Don't have an account?{' '}
-                            <a href="/register" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>Sign Up</a>
+                            <a href="/register" className="text-primary font-bold">Sign Up</a>
                         </p>
                     </form>
                 </div>
 
                 <div className="split-right">
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'white' }}>Hey</h2>
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'white' }}>Welcome Back</h2>
-                    <p style={{ opacity: 0.9 }}>Login to stay connected and keep track of your tasks effectively.</p>
+                    <h2 className="text-4xl mb-4 text-white">Hey</h2>
+                    <h2 className="text-4xl mb-6 text-white">Welcome Back</h2>
+                    <p className="opacity-90">Login to stay connected and keep track of your tasks effectively.</p>
                 </div>
             </div>
         </div>

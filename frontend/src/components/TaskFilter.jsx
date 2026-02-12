@@ -13,17 +13,8 @@ function TaskFilter({ filters, onFilterChange }) {
     };
 
     return (
-        <div style={{
-            display: 'flex',
-            gap: '1.5rem',
-            marginBottom: '2.5rem',
-            padding: '1.5rem',
-            backgroundColor: 'var(--bg-card)',
-            borderRadius: 'var(--radius)',
-            border: '1px solid var(--border)',
-            flexWrap: 'wrap'
-        }}>
-            <div style={{ flex: '1', minWidth: '150px' }}>
+        <div className="flex gap-6 mb-10 p-6 bg-bg-card rounded-xl border border-border flex-wrap">
+            <div className="flex-1 min-w-[150px]">
                 <label>Status:</label>
                 <select
                     value={filters.status || ''}
@@ -36,7 +27,7 @@ function TaskFilter({ filters, onFilterChange }) {
                 </select>
             </div>
 
-            <div style={{ flex: '1', minWidth: '150px' }}>
+            <div className="flex-1 min-w-[150px]">
                 <label>Priority:</label>
                 <select
                     value={filters.priority || ''}
@@ -49,7 +40,7 @@ function TaskFilter({ filters, onFilterChange }) {
                 </select>
             </div>
 
-            <div style={{ flex: '2', minWidth: '250px' }}>
+            <div className="flex-[2] min-w-[250px]">
                 <label>Search Tasks:</label>
                 <input
                     type="text"

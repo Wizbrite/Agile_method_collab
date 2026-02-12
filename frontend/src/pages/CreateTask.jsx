@@ -28,11 +28,11 @@ function CreateTask() {
     };
 
     return (
-        <div style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto' }}>
+        <div className="container-custom max-w-[600px]">
             <h1>Create New Task</h1>
 
             {error && (
-                <div style={{ color: 'red', marginBottom: '1rem' }}>
+                <div className="error-message mb-4">
                     {error}
                 </div>
             )}

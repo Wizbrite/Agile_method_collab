@@ -53,13 +53,13 @@ function Register() {
     };
 
     return (
-        <div className="container" style={{ maxWidth: '900px' }}>
+        <div className="container-custom max-w-[900px]">
             <div className="card">
                 <div className="split-left">
-                    <h1 style={{ color: 'var(--primary)', marginBottom: '2rem' }}>REGISTER</h1>
+                    <h1 className="text-primary mb-8">REGISTER</h1>
 
                     {error && (
-                        <div className="error-message" style={{ marginBottom: '1.5rem' }}>
+                        <div className="error-message mb-6">
                             {error}
                         </div>
                     )}
@@ -116,22 +116,22 @@ function Register() {
                         <button
                             type="submit"
                             disabled={loading}
-                            style={{ width: '100%', marginTop: '1rem' }}
+                            className="w-full mt-4"
                         >
                             {loading ? 'Creating Account...' : 'Register'}
                         </button>
 
-                        <p style={{ marginTop: '2rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                        <p className="mt-8 text-center text-text-muted text-sm">
                             Already have an account?{' '}
-                            <a href="/login" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>Login here</a>
+                            <a href="/login" className="text-primary font-bold">Login here</a>
                         </p>
                     </form>
                 </div>
 
                 <div className="split-right">
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'white' }}>Join</h2>
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'white' }}>Our Team</h2>
-                    <p style={{ opacity: 0.9 }}>Create an account to start managing your projects with agility and style.</p>
+                    <h2 className="text-4xl mb-4 text-white">Join</h2>
+                    <h2 className="text-4xl mb-6 text-white">Our Team</h2>
+                    <p className="opacity-90">Create an account to start managing your projects with agility and style.</p>
                 </div>
             </div>
         </div>
