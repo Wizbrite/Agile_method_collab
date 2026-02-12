@@ -22,6 +22,7 @@ This is a **skeleton project template** designed for junior developers to comple
 - **Vite** - Build tool and dev server
 - **React Router** - Client-side routing
 - **Axios** - HTTP client
+- **Tailwind CSS v4** - Utility-first CSS framework with custom theming
 
 ## 📁 Project Structure
 
@@ -202,26 +203,96 @@ This project supports team-based development:
 - Follow the file mapping in TEAM_IMPLEMENTATION_GUIDE.md
 - Use provided AI prompts to ensure consistency
 
-## 🎨 Design System & Theme
+## 🎨 Styling & Tailwind CSS v4
 
 > [!IMPORTANT]
-> **Theme: Elegant Split (Rich Violet Deep Glow & Off-White)**
+> **This project uses Tailwind CSS v4 with a hybrid approach**
 >
-> A premium theme with a multi-layered rich violet deep radial glow background and sophisticated split-screen "Off-White" cards.
->
-> - **Background:** Rich Violet Deep Glow (`#6d28d9` center to `#2e1065` edges)
-> - **Cards:** Off-White (`#fdfaff`) with high-contrast absolute black text.
-> - **Layout:** Split-screen (`.split-left` for forms, `.split-right` for gradients).
-> - **Primary Gradient:** `linear-gradient(135deg, #6d28d9, #a21caf)`
-> - **Corners:** Highly rounded (`var(--radius)` = 30px)
->
-> Do not use hardcoded colors. Always reference the variables in `index.css`.
+> The styling system combines:
+> - **Tailwind v4 @theme**: Centralized color variables, spacing, and design tokens
+> - **Standard CSS**: All actual styles in `@layer base` and `@layer components`
+> - **Tailwind utilities**: Used in JSX for layout (flex, grid, padding, margins)
+
+### Tailwind CSS v4 Setup
+
+The project is already configured with Tailwind CSS v4. Here's what's included:
+
+**Dependencies** (already in `package.json`):
+```json
+{
+  "devDependencies": {
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/vite": "^4.0.0"
+  }
+}
+```
+
+**Vite Configuration** (`vite.config.js`):
+```javascript
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss()  // Tailwind v4 Vite plugin
+  ]
+})
+```
+
+**CSS Configuration** (`src/index.css`):
+- `@theme` block defines all design tokens (colors, spacing, fonts)
+- `@layer base` contains global element styling
+- `@layer components` contains reusable component classes
+
+### Design Theme: Elegant Violet with Glassmorphism
+
+**Color Palette:**
+- Primary: `#6d28d9` (Rich Violet)
+- Secondary: `#a21caf` (Magenta)
+- Background: Radial gradient from `#6d28d9` to `#2e1065`
+- Cards: Semi-transparent with glassmorphic effects
+
+**Special Components:**
+- `.glass-form` - Glassmorphic form with animated neon border effects
+- `.card` - Off-white cards with deep shadows
+- `.split-left` / `.split-right` - Split-screen layouts
+
+### Using Tailwind in Components
+
+**Layout & Spacing (use Tailwind utilities):**
+```jsx
+<div className="flex gap-4 mb-6 p-8">
+  <button className="px-6 py-3">Click me</button>
+</div>
+```
+
+**Custom Styling (use component classes):**
+```jsx
+<form className="glass-form">
+  <div className="card">
+    {/* content */}
+  </div>
+</form>
+```
+
+**Theme Colors (use CSS variables):**
+```css
+background: var(--color-primary);
+border-color: var(--color-border);
+```
+
+### Important Notes
+
+- ✅ Tailwind processes CSS via the `@tailwindcss/vite` plugin
+- ✅ VSCode may show warnings for `@theme` - these are cosmetic only
+- ✅ All gradients and complex effects use standard CSS (not Tailwind arbitrary values)
+- ❌ Don't use arbitrary values like `bg-[radial-gradient(...)]` - use standard CSS instead
 
 ### 🤖 AI Theme Prompt (FOR DEVELOPERS)
 
 When asking AI to build a new component or style a page, **copy and paste this rule** into your prompt:
 
-> "Follow the app's 'Elegant Split' theme. Use `frontend/src/index.css` global variables: a multi-layered rich violet radial glow background centered behind the card, and split-screen off-white cards. Ensure all text inside cards uses `#000000` (absolute black) for perfect readability."
+> "Follow the app's 'Elegant Violet with Glassmorphism' theme using Tailwind CSS v4. Reference the `@theme` variables in `frontend/src/index.css` for colors. Use Tailwind utility classes for layout (flex, grid, spacing) and component classes (`.glass-form`, `.card`) for styling. The background is a rich violet radial gradient, and forms use glassmorphic design with neon purple glow effects."
 
 ## 📝 License
 

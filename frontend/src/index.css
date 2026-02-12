@@ -183,7 +183,97 @@
     background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 50%, #db2777 100%);
     color: white;
   }
+
+  .glass-form {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(109, 40, 217, 0.3);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow:
+      0 8px 32px 0 rgba(31, 38, 135, 0.37),
+      0 0 40px rgba(109, 40, 217, 0.3),
+      inset 0 0 60px rgba(109, 40, 217, 0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-form::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+        #6d28d9,
+        #a21caf,
+        #db2777,
+        #6d28d9);
+    border-radius: 24px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    animation: neon-pulse 3s ease-in-out infinite;
+  }
+
+  .glass-form:hover::before {
+    opacity: 0.6;
+  }
+
+  @keyframes neon-pulse {
+
+    0%,
+    100% {
+      box-shadow:
+        0 0 20px rgba(109, 40, 217, 0.5),
+        0 0 40px rgba(109, 40, 217, 0.3),
+        0 0 60px rgba(109, 40, 217, 0.2);
+    }
+
+    50% {
+      box-shadow:
+        0 0 30px rgba(162, 28, 175, 0.6),
+        0 0 60px rgba(162, 28, 175, 0.4),
+        0 0 90px rgba(162, 28, 175, 0.3);
+    }
+  }
+
+  /* Enhanced inputs for glass form */
+  .glass-form input,
+  .glass-form select,
+  .glass-form textarea {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid rgba(109, 40, 217, 0.2);
+    color: #ffffff;
+    transition: all 0.3s ease;
+  }
+
+  .glass-form input:focus,
+  .glass-form select:focus,
+  .glass-form textarea:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(109, 40, 217, 0.8);
+    box-shadow:
+      0 0 20px rgba(109, 40, 217, 0.4),
+      0 0 0 4px rgba(109, 40, 217, 0.1);
+  }
+
+  .glass-form label {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0 10px rgba(109, 40, 217, 0.5);
+  }
+
+  /* Style the dropdown options */
+  .glass-form select option {
+    background-color: #2e1065;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+  }
 }
+
 
 /* Scrollbar Styling - Keeping standard CSS for simplicity, but can be customized in base if needed */
 ::-webkit-scrollbar {

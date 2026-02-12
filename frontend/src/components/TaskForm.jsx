@@ -30,7 +30,7 @@ function TaskForm({ initialData = {}, onSubmit, onCancel, loading = false }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className='bg-red'>
+        <form onSubmit={handleSubmit} className='glass-form'>
             <div className="mb-4">
                 <label>Title:</label>
                 <input
