@@ -13,7 +13,7 @@ function TaskFilter({ filters, onFilterChange }) {
     };
 
     return (
-        <div className="flex gap-6 mb-10 p-6 bg-bg-card rounded-xl border border-border flex-wrap">
+        <div className="glass-filter flex gap-6 flex-wrap">
             <div className="flex-1 min-w-[150px]">
                 <label>Status:</label>
                 <select

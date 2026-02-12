@@ -184,7 +184,8 @@
     color: white;
   }
 
-  .glass-form {
+  .glass-form,
+  .glass-filter {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -199,7 +200,13 @@
     overflow: hidden;
   }
 
-  .glass-form::before {
+  .glass-filter {
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .glass-form::before,
+  .glass-filter::before {
     content: '';
     position: absolute;
     top: -2px;
@@ -218,7 +225,8 @@
     animation: neon-pulse 3s ease-in-out infinite;
   }
 
-  .glass-form:hover::before {
+  .glass-form:hover::before,
+  .glass-filter:hover::before {
     opacity: 0.6;
   }
 
@@ -240,10 +248,12 @@
     }
   }
 
-  /* Enhanced inputs for glass form */
+  /* Enhanced inputs for glass form and filter */
   .glass-form input,
   .glass-form select,
-  .glass-form textarea {
+  .glass-form textarea,
+  .glass-filter input,
+  .glass-filter select {
     background: rgba(255, 255, 255, 0.08);
     border: 1.5px solid rgba(109, 40, 217, 0.2);
     color: #ffffff;
@@ -252,7 +262,9 @@
 
   .glass-form input:focus,
   .glass-form select:focus,
-  .glass-form textarea:focus {
+  .glass-form textarea:focus,
+  .glass-filter input:focus,
+  .glass-filter select:focus {
     background: rgba(255, 255, 255, 0.12);
     border-color: rgba(109, 40, 217, 0.8);
     box-shadow:
@@ -260,13 +272,15 @@
       0 0 0 4px rgba(109, 40, 217, 0.1);
   }
 
-  .glass-form label {
+  .glass-form label,
+  .glass-filter label {
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 0 0 10px rgba(109, 40, 217, 0.5);
   }
 
   /* Style the dropdown options */
-  .glass-form select option {
+  .glass-form select option,
+  .glass-filter select option {
     background-color: #2e1065;
     color: #ffffff;
     padding: 10px;
