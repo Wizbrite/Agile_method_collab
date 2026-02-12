@@ -1,4 +1,5 @@
-import { Category } from '../models/index.js';
+import { Category, Task } from '../models/index.js';
+import sequelize from '../config/database.js';
 
 /**
  * Category Service
@@ -10,12 +11,23 @@ import { Category } from '../models/index.js';
  * @returns {Array} List of categories
  */
 export const getAllCategories = async () => {
-    // TODO: Implement category listing (SB06)
-    // 1. Fetch all categories
-    // 2. Include task count
-    // 3. Return categories
-
-    throw new Error('Not implemented - Complete this for SB06');
+    // SB06: Implement category listing with task count
+    return await Category.findAll({
+        attributes: {
+            include: [
+                [
+                    sequelize.literal(`(
+                        SELECT COUNT(*)
+                        FROM tasks AS task
+                        WHERE
+                            task.categoryId = Category.id
+                    )`),
+                    'taskCount'
+                ]
+            ]
+        },
+        order: [['name', 'ASC']]
+    });
 };
 
 /**
@@ -24,12 +36,15 @@ export const getAllCategories = async () => {
  * @returns {Object} Created category
  */
 export const createCategory = async (categoryData) => {
-    // TODO: Implement category creation (SB06)
-    // 1. Validate name and color
-    // 2. Check for duplicate name
-    // 3. Create category
+    // SB06: Implement category creation
+    const { name, color } = categoryData;
+    if (!name) throw new Error('Category name is required');
 
-    throw new Error('Not implemented - Complete this for SB06');
+    // Check for duplicate name
+    const existing = await Category.findOne({ where: { name } });
+    if (existing) throw new Error('Category already exists');
+
+    return await Category.create({ name, color });
 };
 
 /**
@@ -39,12 +54,12 @@ export const createCategory = async (categoryData) => {
  * @returns {Object} Updated category
  */
 export const updateCategory = async (categoryId, updates) => {
-    // TODO: Implement category update (SB06)
-    // 1. Find category
-    // 2. Update fields
-    // 3. Return updated category
+    // SB06: Implement category update
+    const category = await Category.findByPk(categoryId);
+    if (!category) throw new Error('Category not found');
 
-    throw new Error('Not implemented - Complete this for SB06');
+    await category.update(updates);
+    return category;
 };
 
 /**
@@ -53,10 +68,16 @@ export const updateCategory = async (categoryId, updates) => {
  * @returns {boolean} Success status
  */
 export const deleteCategory = async (categoryId) => {
-    // TODO: Implement category deletion (SB06)
-    // 1. Check if category has tasks
-    // 2. Handle task reassignment or prevent deletion
-    // 3. Delete category
+    // SB06: Implement category deletion
+    const category = await Category.findByPk(categoryId);
+    if (!category) throw new Error('Category not found');
 
-    throw new Error('Not implemented - Complete this for SB06');
+    // Check if category has tasks
+    const taskCount = await Task.count({ where: { categoryId } });
+    if (taskCount > 0) {
+        throw new Error('Cannot delete category with associated tasks');
+    }
+
+    await category.destroy();
+    return true;
 };

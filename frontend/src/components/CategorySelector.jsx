@@ -6,7 +6,7 @@ import * as categoryApi from '../api/category.api.js';
  * Dropdown for selecting task category
  * Referenced in Sprint Backlog: SB06
  */
-function CategorySelector({ value, onChange }) {
+function CategorySelector({ value, onChange, showAll = false }) {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -31,20 +31,20 @@ function CategorySelector({ value, onChange }) {
     }
 
     return (
-        <label>
-            Category:
+        <>
+            <label>Category:</label>
             <select
                 value={value || ''}
                 onChange={(e) => onChange(e.target.value)}
             >
-                <option value="">No Category</option>
+                <option value="">{showAll ? 'All Categories' : 'No Category'}</option>
                 {categories.map((category) => (
                     <option key={category.id} value={category.id}>
                         {category.name}
                     </option>
                 ))}
             </select>
-        </label>
+        </>
     );
 }
 

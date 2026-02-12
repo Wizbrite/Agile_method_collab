@@ -1,4 +1,5 @@
 import { Task, Category } from '../models/index.js';
+import { Op } from 'sequelize';
 
 /**
  * Task Service
@@ -12,12 +13,16 @@ import { Task, Category } from '../models/index.js';
  * @returns {Object} Created task
  */
 export const createTask = async (userId, taskData) => {
-    // TODO: Implement task creation (SB02)
-    // 1. Validate input data
-    // 2. Create task with userId
-    // 3. Return task with category relationship
+    // SB02: Implement task creation
+    const task = await Task.create({
+        ...taskData,
+        userId
+    });
 
-    throw new Error('Not implemented - Complete this for SB02');
+    // Return with category relationship
+    return await Task.findByPk(task.id, {
+        include: [{ model: Category, as: 'category' }]
+    });
 };
 
 /**
@@ -27,13 +32,24 @@ export const createTask = async (userId, taskData) => {
  * @returns {Array} List of tasks
  */
 export const getTasks = async (userId, filters = {}) => {
-    // TODO: Implement task listing with filters (SB03)
-    // 1. Build query with filters
-    // 2. Include category relationship
-    // 3. Sort by deadline or priority
-    // 4. Return tasks array
+    // SB03: Implement task listing with filters
+    const where = { userId };
 
-    throw new Error('Not implemented - Complete this for SB03');
+    if (filters.status) where.status = filters.status;
+    if (filters.priority) where.priority = filters.priority;
+    if (filters.categoryId) where.categoryId = filters.categoryId;
+    if (filters.search) {
+        where[Op.or] = [
+            { title: { [Op.like]: `%${filters.search}%` } },
+            { description: { [Op.like]: `%${filters.search}%` } }
+        ];
+    }
+
+    return await Task.findAll({
+        where,
+        include: [{ model: Category, as: 'category' }],
+        order: [['createdAt', 'DESC']]
+    });
 };
 
 /**
@@ -43,12 +59,14 @@ export const getTasks = async (userId, filters = {}) => {
  * @returns {Object} Task details
  */
 export const getTaskById = async (taskId, userId) => {
-    // TODO: Implement task retrieval (SB03)
-    // 1. Find task by ID
-    // 2. Verify ownership
-    // 3. Include category
+    // SB03: Implement task retrieval
+    const task = await Task.findOne({
+        where: { id: taskId, userId },
+        include: [{ model: Category, as: 'category' }]
+    });
 
-    throw new Error('Not implemented - Complete this for SB03');
+    if (!task) throw new Error('Task not found');
+    return task;
 };
 
 /**
@@ -59,13 +77,15 @@ export const getTaskById = async (taskId, userId) => {
  * @returns {Object} Updated task
  */
 export const updateTask = async (taskId, userId, updates) => {
-    // TODO: Implement task update (SB04)
-    // 1. Find task and verify ownership
-    // 2. Validate status transitions
-    // 3. Update task
-    // 4. Return updated task
+    // SB04: Implement task update
+    const task = await Task.findOne({ where: { id: taskId, userId } });
+    if (!task) throw new Error('Task not found');
 
-    throw new Error('Not implemented - Complete this for SB04');
+    await task.update(updates);
+
+    return await Task.findByPk(taskId, {
+        include: [{ model: Category, as: 'category' }]
+    });
 };
 
 /**
@@ -75,12 +95,12 @@ export const updateTask = async (taskId, userId, updates) => {
  * @returns {boolean} Success status
  */
 export const deleteTask = async (taskId, userId) => {
-    // TODO: Implement task deletion (SB05)
-    // 1. Find task and verify ownership
-    // 2. Delete task (soft or hard delete)
-    // 3. Return success
+    // SB05: Implement task deletion
+    const task = await Task.findOne({ where: { id: taskId, userId } });
+    if (!task) throw new Error('Task not found');
 
-    throw new Error('Not implemented - Complete this for SB05');
+    await task.destroy();
+    return true;
 };
 
 /**

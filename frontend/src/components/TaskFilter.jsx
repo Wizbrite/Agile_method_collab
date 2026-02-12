@@ -1,3 +1,5 @@
+import CategorySelector from './CategorySelector.jsx';
+
 /**
  * Task Filter Component
  * Provides filtering options for task list
@@ -38,6 +40,14 @@ function TaskFilter({ filters, onFilterChange }) {
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
                 </select>
+            </div>
+
+            <div className="flex-1 min-w-[150px]">
+                <CategorySelector
+                    value={filters.categoryId}
+                    onChange={(val) => handleChange('categoryId', val)}
+                    showAll={true}
+                />
             </div>
 
             <div className="flex-[2] min-w-[250px]">
