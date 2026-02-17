@@ -14,8 +14,37 @@ import { Op } from 'sequelize';
  */
 export const createTask = async (userId, taskData) => {
     // SB02: Implement task creation
+    let { title, priority, deadline, categoryId } = taskData;
+
+    // Sanitize optional fields
+    if (deadline === '') deadline = null;
+    if (categoryId === '') categoryId = null;
+
+    // Validation
+    if (!title || title.trim() === '') {
+        throw new Error('Title is required');
+    }
+
+    if (priority && !['low', 'medium', 'high'].includes(priority)) {
+        throw new Error('Invalid priority level');
+    }
+
+    if (deadline && isNaN(new Date(deadline).getTime())) {
+        throw new Error('Invalid deadline date');
+    }
+
+    if (categoryId) {
+        const category = await Category.findByPk(categoryId);
+        if (!category) {
+            throw new Error('Category not found');
+        }
+    }
+
     const task = await Task.create({
         ...taskData,
+        priority, // Use sanitized value
+        deadline, // Use sanitized value
+        categoryId, // Use sanitized value
         userId
     });
 
@@ -48,7 +77,10 @@ export const getTasks = async (userId, filters = {}) => {
     return await Task.findAll({
         where,
         include: [{ model: Category, as: 'category' }],
-        order: [['createdAt', 'DESC']]
+        order: [
+            ['deadline', 'ASC'],
+            ['createdAt', 'DESC']
+        ]
     });
 };
 
@@ -80,6 +112,29 @@ export const updateTask = async (taskId, userId, updates) => {
     // SB04: Implement task update
     const task = await Task.findOne({ where: { id: taskId, userId } });
     if (!task) throw new Error('Task not found');
+
+    // Validation for updates
+    // Validation for updates
+    if (updates.title !== undefined && (!updates.title || updates.title.trim() === '')) {
+        throw new Error('Title cannot be empty');
+    }
+
+    if (updates.priority && !['low', 'medium', 'high'].includes(updates.priority)) {
+        throw new Error('Invalid priority level');
+    }
+
+    if (updates.deadline === '') updates.deadline = null;
+    if (updates.deadline && isNaN(new Date(updates.deadline).getTime())) {
+        throw new Error('Invalid deadline date');
+    }
+
+    if (updates.categoryId === '') updates.categoryId = null;
+    if (updates.categoryId) {
+        const category = await Category.findByPk(updates.categoryId);
+        if (!category) {
+            throw new Error('Category not found');
+        }
+    }
 
     await task.update(updates);
 

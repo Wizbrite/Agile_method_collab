@@ -32,10 +32,11 @@ function CategorySelector({ value, onChange, showAll = false }) {
 
     return (
         <>
-            <label>Category:</label>
+            <label className="block mb-2 text-sm font-semibold text-white/90">Category</label>
             <select
                 value={value || ''}
                 onChange={(e) => onChange(e.target.value)}
+                className="w-full p-3 bg-white/10 border border-purple-500/30 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all [&>option]:text-gray-900"
             >
                 <option value="">{showAll ? 'All Categories' : 'No Category'}</option>
                 {categories.map((category) => (

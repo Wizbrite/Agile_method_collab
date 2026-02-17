@@ -7,11 +7,18 @@ import CategorySelector from './CategorySelector.jsx';
  */
 function TaskFilter({ filters, onFilterChange }) {
     const handleChange = (field, value) => {
-        // TODO: Implement filter logic (SB03)
-        onFilterChange({
+        // SB03: Implement filter logic
+        const newFilters = {
             ...filters,
             [field]: value
-        });
+        };
+
+        // Remove empty filters
+        if (!value) {
+            delete newFilters[field];
+        }
+
+        onFilterChange(newFilters);
     };
 
     return (

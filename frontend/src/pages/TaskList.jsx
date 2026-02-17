@@ -63,11 +63,16 @@ function TaskList() {
             )}
 
             {loading ? (
-                <p>Loading tasks...</p>
+                <div className="flex justify-center items-center h-64">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+                </div>
             ) : tasks.length === 0 ? (
-                <p>No tasks found. Create your first task!</p>
+                <div className="text-center py-20 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm">
+                    <p className="text-xl text-purple-200 mb-4">No tasks found ✨</p>
+                    <p className="text-white/60">Create your first task to get started!</p>
+                </div>
             ) : (
-                <div className="grid gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {tasks.map((task) => (
                         <TaskCard
                             key={task.id}
