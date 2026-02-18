@@ -13,9 +13,15 @@ import { Op } from 'sequelize';
  * @returns {Object} Created task
  */
 export const createTask = async (userId, taskData) => {
-    // SB02: Implement task creation
-    const task = await Task.create({
+    // Normalize data: convert empty strings to null for nullable fields
+    const normalizedData = {
         ...taskData,
+        categoryId: taskData.categoryId === '' ? null : taskData.categoryId,
+        deadline: taskData.deadline === '' ? null : taskData.deadline
+    };
+
+    const task = await Task.create({
+        ...normalizedData,
         userId
     });
 
@@ -77,11 +83,15 @@ export const getTaskById = async (taskId, userId) => {
  * @returns {Object} Updated task
  */
 export const updateTask = async (taskId, userId, updates) => {
-    // SB04: Implement task update
     const task = await Task.findOne({ where: { id: taskId, userId } });
     if (!task) throw new Error('Task not found');
 
-    await task.update(updates);
+    // Normalize data: convert empty strings to null for nullable fields
+    const normalizedUpdates = { ...updates };
+    if (normalizedUpdates.categoryId === '') normalizedUpdates.categoryId = null;
+    if (normalizedUpdates.deadline === '') normalizedUpdates.deadline = null;
+
+    await task.update(normalizedUpdates);
 
     return await Task.findByPk(taskId, {
         include: [{ model: Category, as: 'category' }]
@@ -95,7 +105,6 @@ export const updateTask = async (taskId, userId, updates) => {
  * @returns {boolean} Success status
  */
 export const deleteTask = async (taskId, userId) => {
-    // SB05: Implement task deletion
     const task = await Task.findOne({ where: { id: taskId, userId } });
     if (!task) throw new Error('Task not found');
 

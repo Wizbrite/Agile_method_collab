@@ -58,7 +58,6 @@ export const updateTask = async (taskId, updates) => {
  * @param {number} taskId
  */
 export const deleteTask = async (taskId) => {
-    // TODO: Implement task deletion (SB05)
     const response = await api.delete(`/tasks/${taskId}`);
     return response.data;
 };

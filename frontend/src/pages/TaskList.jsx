@@ -34,13 +34,13 @@ function TaskList() {
     };
 
     const handleDelete = async (taskId) => {
-        // TODO: Implement task deletion with confirmation (SB05)
         if (window.confirm('Are you sure you want to delete this task?')) {
             try {
                 await taskApi.deleteTask(taskId);
                 loadTasks();
             } catch (err) {
-                alert('Failed to delete task');
+                const message = err.response?.data?.error || 'Failed to delete task';
+                alert(message);
             }
         }
     };

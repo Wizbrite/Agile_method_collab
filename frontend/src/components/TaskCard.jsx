@@ -14,34 +14,34 @@ function TaskCard({ task, onDelete, onEdit }) {
     };
 
     return (
-        <div className={`card relative overflow-hidden ${isOverdue ? 'border-error' : 'border-border'}`}>
+        <div className={`task-card group ${isOverdue ? 'ring-1 ring-error/50' : ''}`}>
             {isOverdue && (
-                <div className="absolute top-0 left-0 w-1 h-full bg-error" />
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-error to-transparent opacity-70" />
             )}
 
-            <div className="flex justify-between items-start">
-                <div>
-                    <h3 className="mb-2">{task.title}</h3>
-                    <p className="text-text-muted text-[0.95rem] mb-4">
+            <div className="flex justify-between items-start gap-4">
+                <div className="flex-1">
+                    <h3 className="group-hover:text-primary transition-colors">{task.title}</h3>
+                    <p className="mb-4">
                         {task.description}
                     </p>
 
-                    <div className="flex gap-3 flex-wrap">
-                        <span className="px-3 py-1.5 rounded-full bg-bg-input text-[10px] font-bold uppercase tracking-wider">
+                    <div className="flex gap-2 flex-wrap">
+                        <span className="tag px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
                             {task.status.replace('_', ' ')}
                         </span>
 
-                        <span className={`px-3 py-1.5 rounded-full ${priorityClasses[task.priority]} text-white text-[10px] font-bold uppercase`}>
+                        <span className={`px-3 py-1 rounded-full text-white text-[10px] font-bold uppercase ${priorityClasses[task.priority]} shadow-sm`}>
                             {task.priority}
                         </span>
 
                         {task.category && (
                             <span
-                                className="px-3 py-1.5 rounded-full text-[10px] font-bold"
+                                className="px-3 py-1 rounded-full text-[10px] font-bold border"
                                 style={{
-                                    backgroundColor: task.category.color + '33',
+                                    backgroundColor: task.category.color + '22',
                                     color: task.category.color,
-                                    border: `1px solid ${task.category.color}`
+                                    borderColor: task.category.color + '44'
                                 }}
                             >
                                 {task.category.name}
@@ -50,25 +50,29 @@ function TaskCard({ task, onDelete, onEdit }) {
                     </div>
 
                     {task.deadline && (
-                        <p className={`mt-4 text-xs ${isOverdue ? 'text-error' : 'text-text-muted'} flex items-center gap-2`}>
+                        <p className={`mt-4 text-[11px] ${isOverdue ? 'text-error font-semibold' : 'text-white/60'} flex items-center gap-2`}>
                             <span>{isOverdue ? '🚨 Overdue' : '⏰ Deadline'}:</span>
-                            <span className="font-bold">
-                                {new Date(task.deadline).toLocaleDateString()}
+                            <span>
+                                {new Date(task.deadline).toLocaleDateString(undefined, {
+                                    month: 'short',
+                                    day: 'numeric',
+                                    year: 'numeric'
+                                })}
                             </span>
                         </p>
                     )}
                 </div>
 
-                <div className="flex gap-3">
+                <div className="flex flex-col gap-2">
                     <button
                         onClick={() => onEdit(task.id)}
-                        className="px-3 py-1.5 text-xs bg-bg-input text-text-dark shadow-none hover:bg-slate-100"
+                        className="btn-ghost"
                     >
                         Edit
                     </button>
                     <button
                         onClick={() => onDelete(task.id)}
-                        className="px-3 py-1.5 text-xs bg-transparent text-error border border-error shadow-none hover:bg-error/10"
+                        className="btn-danger-outline"
                     >
                         Delete
                     </button>
@@ -76,6 +80,6 @@ function TaskCard({ task, onDelete, onEdit }) {
             </div>
         </div>
     );
-}
+};
 
 export default TaskCard;

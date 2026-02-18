@@ -286,6 +286,84 @@
     padding: 10px;
     border-radius: 10px;
   }
+
+  /* --- Task Card Glassmorphism --- */
+  .task-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+      0 10px 30px -5px rgba(0, 0, 0, 0.3),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .task-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(109, 40, 217, 0.4);
+    box-shadow: 
+      0 20px 40px -10px rgba(0, 0, 0, 0.5),
+      0 0 20px rgba(109, 40, 217, 0.2);
+  }
+
+  .task-card h3 {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  .task-card p {
+    color: rgba(248, 250, 252, 0.8);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .task-card .tag {
+    background: rgba(109, 40, 217, 0.2);
+    border: 1px solid rgba(109, 40, 217, 0.3);
+    color: #ddd6fe;
+    backdrop-filter: blur(4px);
+  }
+
+  .task-card .btn-ghost {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    box-shadow: none;
+    padding: 0.5rem 1rem;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 0.75rem;
+  }
+
+  .task-card .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .task-card .btn-danger-outline {
+    background: transparent;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+    box-shadow: none;
+    padding: 0.5rem 1rem;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 0.75rem;
+  }
+
+  .task-card .btn-danger-outline:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.8);
+    color: #ef4444;
+  }
 }
 
 
