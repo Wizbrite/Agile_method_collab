@@ -15,3 +15,5 @@ router.put('/:id', authenticateToken, categoryController.updateCategory);
 router.delete('/:id', authenticateToken, categoryController.deleteCategory);
 
 export default router;
+
+//validated category routes with authentication middleware. All routes require a valid token to access.

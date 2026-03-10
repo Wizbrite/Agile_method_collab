@@ -81,3 +81,5 @@ export const deleteCategory = async (categoryId) => {
     await category.destroy();
     return true;
 };
+
+//validated category service with task count in listing, duplicate name check on creation, and prevention of deletion if tasks are associated.
